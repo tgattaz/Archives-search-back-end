@@ -20,13 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", function(req, res) {
   let msg = {"key":"j'adore les cours de quafafou"};
   res.send(msg);
-});    
-app.get('http://export.arxiv.org/api/query?search_query=salut', function(req,res2){
-
-    console.log("ton fils");
-    console.log(res2);
-
-
 });
 
 dataLayer.init(function(){

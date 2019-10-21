@@ -1,16 +1,20 @@
 var request = require('request');
 var router = require('express').Router();
+var parser = require('xml2js');
 
 /* Route pour récupérer la todolist  */
-router.get('/', function(req, res1) {
+router.get('/', function(req, response) {
     
-    request('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', { json: true }, (err, res, body) => {
+    var result;
+    
+    request('http://export.arxiv.org/api/query?search_query=test', { xml: true }, (err, res, body) => {
         if (err) { return console.log(err); }
-        console.log(body.url);
-        console.log(body.explanation);
+
+        parser.Parser().parseString(body, (e, r) => {result = r});
+        response.send(result);
+
     });
 
-    res1.send(res1);
 });
 
 
