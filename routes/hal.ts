@@ -2,15 +2,16 @@ var request = require('request');
 var router = require('express').Router();
 var parser = require('xml2js');
 
-router.get('/', function(req, response) {
-    let result;
+router.get('/:q', function(req, response) {
+    let query = req.params.q;
 
-    request('http://api.archives-ouvertes.fr/search/?q=lymphocyte&wt=json&fl=*', { json : true},
+    let url = 'http://api.archives-ouvertes.fr/search/?q='+query+'&wt=json&fl=*';
+
+    request(url, { json : true },
         (err, res, body) => {
             if (err) { return console.log(err); }
 
-            parser.Parser().parseString(body, (e, r) => {result = r});
-            response.send(result);
+            response.send(body.response.docs);
         });
 });
 
