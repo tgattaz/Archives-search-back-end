@@ -1,0 +1,24 @@
+{
+  "name": "archives-search_back_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "launch-server": "./node_modules/.bin/ts-node ./server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "7"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.11.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5",
+    "morgan": "^1.9.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  }
+}
