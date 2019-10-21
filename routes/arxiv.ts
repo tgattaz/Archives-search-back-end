@@ -3,11 +3,14 @@ var router = require('express').Router();
 var parser = require('xml2js');
 
 /* Route pour récupérer la todolist  */
-router.get('/', function(req, response) {
-    
+router.get('/:filter', function(req, response) {
+    let query = req.params.filter;
+
+    let url = 'http://export.arxiv.org/api/query?search_query='+query;
+
     var result;
     
-    request('http://export.arxiv.org/api/query?search_query=test', { xml: true }, (err, res, body) => {
+    request(url, { xml: true }, (err, res, body) => {
         if (err) { return console.log(err); }
 
         parser.Parser().parseString(body, (e, r) => {result = r});
