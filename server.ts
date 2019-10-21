@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/arxiv', require('./routes/arxiv'));
+app.use('/hal', require('./routes/hal'));
 app.set("port", process.env.PORT || 3000);
 
 app.use(bodyParser.json());
