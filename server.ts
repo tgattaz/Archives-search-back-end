@@ -11,18 +11,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/archives', require('./routes/archives'));
-app.use('/arxiv', require('./routes/arxiv'));
-app.use('/hal', require('./routes/hal'));
 app.set("port", process.env.PORT || 3000);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// API Endpoints
-app.get("/", function(req, res) {
-  let msg = {"key":"j'adore les cours de quafafou"};
-  res.send(msg);
-});
 
 dataLayer.init(function(){
   console.log('Initialisation du dataLayer');
