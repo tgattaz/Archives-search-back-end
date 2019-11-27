@@ -13,8 +13,8 @@ class Token {
         this.seed = "82389144785086171941035868418638";
         this.headerTokenName = "token";
 
-        this.privateKey = fs.readFileSync("./jwt_priv.pem");
-        this.publicKey = fs.readFileSync("./jwt_pub.pem");
+        this.privateKey = fs.readFileSync("./keys/jwt_priv.pem");
+        this.publicKey = fs.readFileSync("./keys/jwt_pub.pem");
     }
 
     hasToken(req) {
