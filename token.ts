@@ -1,6 +1,5 @@
 "use strict"
 
-import express = require('express');
 import jwt = require('jsonwebtoken');
 import fs = require('fs');
 
@@ -15,7 +14,7 @@ class Token {
         this.headerTokenName = "token";
 
         this.privateKey = fs.readFileSync("./jwt_priv.pem");
-        this.publicKey = fs.readFileSync("./jwt_priv.pem");
+        this.publicKey = fs.readFileSync("./jwt_pub.pem");
     }
 
     hasToken(req) {
@@ -44,7 +43,7 @@ class Token {
         };
 
         try {
-            returnValue = jwt.sign(content, this.publicKey, {
+            returnValue = jwt.sign(content, this.privateKey, {
                 algorithm: 'ES256',
                 expiresIn: 86400
             });
@@ -59,7 +58,7 @@ class Token {
         let hasAccess = false;
         
         try {
-            token = await jwt.verify(token, this.privateKey, { 
+            token = await jwt.verify(token, this.publicKey, { 
                 algorithms: ['ES256']
             });
         } catch(err) {
@@ -76,7 +75,7 @@ class Token {
     async tokenRequired(req, res, next) {
         let isValid = false,
             token = null;
-        
+
         if (this.hasToken(req)) {
             token = req.headers[this.headerTokenName];
             isValid = await this.verifyToken(token);

@@ -124,10 +124,10 @@ function XMLresult(req, response) {
 /* API */
 
 /* Route pour faire une recherche basique avec retour en JSON */
-router.get('/json/:filter', t.tokenRequired, SendResult);
+router.get('/json/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche basique avec retour en XML */
-router.get('/xml/:filter', t.tokenRequired, SendResult);
+router.get('/xml/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche dans le champ titre en particulier avec retour en JSON */
 router.get('/json/titre/:filter', SendResult);
