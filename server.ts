@@ -8,6 +8,12 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", '*'); // update to match the domain you will make the request from
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, accept, Token, token");
+  res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE, PATCH");
+  next();
+});
 
 app.use('/archives', require('./routes/archives'));
 app.use('/token', require('./routes/auth'));

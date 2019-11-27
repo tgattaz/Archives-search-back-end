@@ -130,16 +130,16 @@ router.get('/json/:filter', (req, res, next) => t.tokenRequired(req, res, next),
 router.get('/xml/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche dans le champ titre en particulier avec retour en JSON */
-router.get('/json/titre/:filter', SendResult);
+router.get('/json/titre/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche dans le champ titre en particulier avec retour en XML */
-router.get('/xml/titre/:filter', SendResult);
+router.get('/xml/titre/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche dans le champ auteur en particulier avec retour en JSON */
-router.get('/json/auteur/:filter', SendResult);
+router.get('/json/auteur/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 /* Route pour faire une recherche dans le champ auteur en particulier avec retour en XML */
-router.get('/xml/auteur/:filter', SendResult);
+router.get('/xml/auteur/:filter', (req, res, next) => t.tokenRequired(req, res, next), SendResult);
 
 
 module.exports = router;
