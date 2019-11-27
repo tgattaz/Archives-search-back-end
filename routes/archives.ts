@@ -1,6 +1,11 @@
+"use strict"
+
 const axios = require('axios');
-var router = require('express').Router();
-var parser = require('xml2js');
+const router = require('express').Router();
+const parser = require('xml2js');
+const Token = require("../token");
+
+let t = new Token();
 
 function SendResult(req, response) {
 
@@ -92,10 +97,9 @@ function XMLresult(req, response) {
 };
 
 /* Route pour récupérer la todolist en JSON */
-router.get('/json/:filter', SendResult);
+router.get('/json/:filter', t.tokenRequired, SendResult);
 
 /* Route pour récupérer la todolist en XML */
-router.get('/xml/:filter', SendResult);
-
+router.get('/xml/:filter', t.tokenRequired, SendResult);
 
 module.exports = router;

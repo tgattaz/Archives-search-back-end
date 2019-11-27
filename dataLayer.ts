@@ -5,7 +5,7 @@ let dataLayer = {
 
     init : function(cb){
 
-      client.connect(VARIABLES.MONGO_URL, { useNewUrlParser: true});
+      client.connect(VARIABLES.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
   
       let db = client.connection; 
       db.on('error', console.error.bind(console, 'Erreur lors de la connexion'));

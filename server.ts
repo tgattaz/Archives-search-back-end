@@ -1,16 +1,16 @@
 import express = require('express');
 import bodyParser = require('body-parser');
-import mongoose = require('mongoose');
 import morgan = require('morgan');
 let dataLayer = require('./dataLayer');
 
-const app = express();
+let app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/archives', require('./routes/archives'));
+app.use('/token', require('./routes/auth'));
 app.set("port", process.env.PORT || 3000);
 
 app.use(bodyParser.json());
