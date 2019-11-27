@@ -4,9 +4,12 @@ const Token = require("../token");
 const router = require('express').Router();
 
 let t = new Token();
+let tokenJSON;
 
 function SendJWT(req, res) {
-    res.send(t.create24hToken("identifiant de tes morts"));
+    tokenJSON = new Object()
+    tokenJSON.token = t.create24hToken("identifiant de connexion");
+    res.send(tokenJSON);
 }
 
 /* Route pour récupérer un token */
